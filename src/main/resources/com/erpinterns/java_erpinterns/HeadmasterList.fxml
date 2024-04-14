@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.erpinterns.java_erpinterns.controllers.ShowHeadmastersController">
+    <children>
+        <TableView fx:id="tableView" layoutX="34.0" layoutY="40.0" prefHeight="300.0" prefWidth="531.0">
+            <columns>
+                <TableColumn fx:id="userIdColumn" prefWidth="75.0" text="User ID" />
+                <TableColumn fx:id="professionalEmailColumn" prefWidth="150.0" text="Professional Email" />
+                <TableColumn fx:id="protelColumn" prefWidth="150.0" text="Protel" />
+            </columns>
+        </TableView>
+        <Button layoutX="256.0" layoutY="362.0" mnemonicParsing="false" onAction="#showAddHeadmastersPage" text="Add Headmaster" />
+        <Button layoutX="400.0" layoutY="362.0" mnemonicParsing="false" onAction="#deleteHeadmaster" text="Delete Headmaster" />
+    </children>
+</AnchorPane>

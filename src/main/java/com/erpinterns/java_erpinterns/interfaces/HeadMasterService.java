@@ -9,4 +9,13 @@ public interface HeadMasterService {
     void addHeadmaster(HeadMasterDepartment headmaster);
     void updateRoleToHeadmaster(int userId);
     List<User> getUsersByRole(String role);
+
+    List<String> getInternFirstNames();
+
+    int getUserIdByFirstName(String firstName);
+
+    List<HeadMasterDepartment> getAllHeadmasters();
+
+    void deleteHeadmaster(int userId);
+    void updateRoleToIntern(int userId);
 }

@@ -15,5 +15,6 @@
         <Label layoutX="14.0" layoutY="103.0" text="Protel:" />
         <TextField fx:id="tfProtel" layoutX="160.0" layoutY="99.0" prefWidth="200.0" />
         <Button layoutX="160.0" layoutY="149.0" mnemonicParsing="false" onAction="#addHeadmaster" text="Add Headmaster" />
+        <Button layoutX="275.0" layoutY="149.0" mnemonicParsing="false" onAction="#showHeadmastersPage" text="Show Headmasters" />
     </children>
 </AnchorPane>

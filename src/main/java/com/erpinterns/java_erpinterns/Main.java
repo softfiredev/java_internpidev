@@ -12,9 +12,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HeadmasterForm.fxml")));
+        //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("HeadmasterForm.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/erpinterns/java_erpinterns/HeadmasterForm.fxml")));
         primaryStage.setTitle("Headmaster Form");
-        primaryStage.setScene(new Scene(root, 300, 200));
+        primaryStage.setScene(new Scene(root, 1000, 500));
         primaryStage.show();
     }
 
