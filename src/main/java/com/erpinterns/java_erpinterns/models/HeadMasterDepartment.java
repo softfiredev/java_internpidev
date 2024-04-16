@@ -43,6 +43,4 @@ public class HeadMasterDepartment {
         this.professionalEmail = professionalEmail;
         this.protel = protel;
     }
-
-    // Getters and setters
 }

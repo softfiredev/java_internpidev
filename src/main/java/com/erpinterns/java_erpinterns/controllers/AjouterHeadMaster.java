@@ -18,7 +18,7 @@ import java.util.List;
 public class AjouterHeadMaster {
 
     @FXML
-    private ComboBox<String> cbUsers; // Change ComboBox type to ComboBox<String>
+    private ComboBox<String> cbUsers;
 
     @FXML
     private TextField tfProfessionalEmail;
@@ -39,13 +39,10 @@ public class AjouterHeadMaster {
     }
 
     private void loadUsers() {
-        List<String> internFirstNames = headmasterService.getInternFirstNames(); // Fetch first names
+        List<String> internFirstNames = headmasterService.getInternFirstNames();
         cbUsers.getItems().addAll(internFirstNames);
-
-        // Listen for ComboBox selection changes
         cbUsers.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                // Fetch and store the ID of the selected user based on the selected first name
                 selectedUserId = headmasterService.getUserIdByFirstName(newValue);
             }
         });
@@ -62,12 +59,11 @@ public class AjouterHeadMaster {
             return;
         }
 
-        // Create a new HeadMasterDepartment object and add to database using the stored user ID
         HeadMasterDepartment headmaster = new HeadMasterDepartment(selectedUserId, professionalEmail, protel);
         headmasterService.addHeadmaster(headmaster);
 
-        // Update user's role to Headmaster using the stored user ID
         headmasterService.updateRoleToHeadmaster(selectedUserId);
+        clearTextFields();
 
         showAlert(Alert.AlertType.INFORMATION, "Success", "Headmaster added successfully.");
     }
@@ -84,5 +80,12 @@ public class AjouterHeadMaster {
         alert.setTitle(title);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+
+    private void clearTextFields() {
+        tfProfessionalEmail.clear(); // Assuming userIdField is the ID text field
+        tfProtel.clear();
+
     }
 }

@@ -18,4 +18,6 @@ public interface HeadMasterService {
 
     void deleteHeadmaster(int userId);
     void updateRoleToIntern(int userId);
+
+    void updateHeadmaster(HeadMasterDepartment headmaster);
 }

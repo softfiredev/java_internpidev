@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0"
+            prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.erpinterns.java_erpinterns.controllers.UpdateHeadmasterController">
+    <TextField fx:id="userIdField" editable="false" layoutX="150.0" layoutY="20.0" prefWidth="200.0"/>
+    <TextField fx:id="professionalEmailField" layoutX="150.0" layoutY="60.0" prefWidth="200.0"/>
+    <TextField fx:id="protelField" layoutX="150.0" layoutY="100.0" prefWidth="200.0"/>
+    <Button layoutX="150.0" layoutY="150.0" mnemonicParsing="false" onAction="#updateHeadmaster" text="Update"/>
+    <Button layoutX="240.0" layoutY="150.0" mnemonicParsing="false" onAction="#showHeadmastersPage" text="Show Headmasters"/>
+</AnchorPane>
+

@@ -1,5 +1,7 @@
 package com.erpinterns.java_erpinterns.utils;
 
+import com.erpinterns.java_erpinterns.controllers.UpdateHeadmasterController;
+import com.erpinterns.java_erpinterns.models.HeadMasterDepartment;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,11 +29,6 @@ public class SceneManager {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/erpinterns/java_erpinterns/HeadmasterList.fxml"));
             Parent root = loader.load();
-
-            // Pass data or inject dependencies if needed
-            // ShowHeadmastersController controller = loader.getController();
-            // controller.initialize(data);
-
             Scene scene = new Scene(root,1000, 500);
             stage.setScene(scene);
             stage.show();
@@ -44,7 +41,6 @@ public class SceneManager {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/erpinterns/java_erpinterns/HeadmasterForm.fxml"));
             Parent root = loader.load();
-
             Scene scene = new Scene(root,1000, 500);
             stage.setScene(scene);
             stage.show();
@@ -52,4 +48,20 @@ public class SceneManager {
             e.printStackTrace();
         }
     }
+
+    public void navigateToUpdateHeadmaster(HeadMasterDepartment selectedHeadmaster) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/erpinterns/java_erpinterns/updateheadmaster.fxml"));
+            Parent root = loader.load();
+
+            UpdateHeadmasterController controller = loader.getController();
+            controller.initData(selectedHeadmaster);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 1000,500));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+}
 }

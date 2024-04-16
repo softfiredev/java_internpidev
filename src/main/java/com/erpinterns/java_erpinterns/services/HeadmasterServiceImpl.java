@@ -29,6 +29,7 @@ public class HeadmasterServiceImpl implements HeadMasterService {
             PreparedStatement updateRoleStatement = connection.prepareStatement(updateRoleQuery);
             updateRoleStatement.setInt(1, headmaster.getUserId());
             updateRoleStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -44,7 +45,7 @@ public class HeadmasterServiceImpl implements HeadMasterService {
             updateRoleStatement.setInt(1, userId);
             updateRoleStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
+            e.printStackTrace();
         }
     }
 
@@ -136,15 +137,49 @@ public class HeadmasterServiceImpl implements HeadMasterService {
             PreparedStatement deleteStatement = connection.prepareStatement(deleteQuery);
             deleteStatement.setInt(1, userId);
             deleteStatement.executeUpdate();
+            updateRoleToIntern(userId);
         } catch (SQLException e) {
-            e.printStackTrace(); // Handle or log the exception as needed
+            e.printStackTrace();
         }
     }
 
 
     @Override
     public void updateRoleToIntern(int userId) {
-        // Implementation to update the role of a user to Intern in the database
+        try (Connection connection = MyDataBase.getInstance().getCnx()) {
+            String query = "UPDATE user SET role = 'Intern' WHERE user_id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, userId);
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("User role updated to Intern successfully.");
+            } else {
+                System.out.println("Failed to update user role to Intern.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+    @Override
+    public void updateHeadmaster(HeadMasterDepartment headmaster) {
+        try {
+            Connection connection = MyDataBase.getInstance().getCnx();
+            String query = "UPDATE dep_head_master SET professionalemail = ?, protel = ? WHERE user_id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, headmaster.getProfessionalEmail());
+            statement.setString(2, headmaster.getProtel());
+            statement.setInt(3, headmaster.getUserId());
+
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Headmaster updated successfully.");
+            } else {
+                System.out.println("Failed to update headmaster.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

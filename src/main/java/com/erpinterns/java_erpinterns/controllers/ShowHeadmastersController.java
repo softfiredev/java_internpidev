@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ShowHeadmastersController {
 
     @FXML
     private TableView<HeadMasterDepartment> tableView;
+
 
     @FXML
     private TableColumn<HeadMasterDepartment, Integer> userIdColumn;
@@ -42,22 +44,26 @@ public class ShowHeadmastersController {
     @FXML
     public void initialize() {
         initializeColumns();
-        loadData();
+        loadHeadmasters();
 
+        tableView.setItems(headmasterList);
     }
 
     private void initializeColumns() {
         userIdColumn.setCellValueFactory(cellData ->
                 new SimpleIntegerProperty(cellData.getValue().getUserId()).asObject());
+        userIdColumn.setEditable(false);
         professionalEmailColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getProfessionalEmail()));
         protelColumn.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getProtel()));
     }
 
-    private void loadData() {
+    private void loadHeadmasters() {
         List<HeadMasterDepartment> headmasters = headmasterService.getAllHeadmasters();
-        tableView.getItems().addAll(headmasters);
+        headmasterList = FXCollections.observableArrayList(headmasters);
+        tableView.setItems(headmasterList);
+
     }
 
     @FXML
@@ -67,6 +73,16 @@ public class ShowHeadmastersController {
         sceneManager.navigateToAddHeadmaster();
     }
 
+    @FXML
+    void handleItemSelection(MouseEvent event) {
+        if (event.getClickCount() == 2) {
+            HeadMasterDepartment selectedHeadmaster = tableView.getSelectionModel().getSelectedItem();
+            if (selectedHeadmaster != null) {
+                SceneManager sceneManager = SceneManager.getInstance((Stage) tableView.getScene().getWindow());
+                sceneManager.navigateToUpdateHeadmaster(selectedHeadmaster);
+            }
+        }
+    }
 
     @FXML
     void deleteHeadmaster() {
